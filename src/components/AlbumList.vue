@@ -1,7 +1,7 @@
 <template>
   <div>
       <header>
-            <img alt="Vue logo" src="../assets/logos.png">
+            <img alt="Vue logo" src="../assets/logot.png">
       </header>
 
       <section >
@@ -49,8 +49,10 @@ export default {
 header {
     height: 50px;
     background-color: #2e3a46;
+    display: flex;
+    align-items: center;
     img {
-        width: 50px;
+        width: 60px;
     }
 }
 section {
