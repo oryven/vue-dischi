@@ -1,6 +1,6 @@
 <template>
   <div>
-    <select id="select-genere" $emit(cambioGenere, genere)>
+    <select v-model="genere" id="select-genere" @change="$emit('cambioGenere', genere)">
       <option value="All">All</option>
       <option value="Rock">Rock</option>
       <option value="Pop">Pop</option>
@@ -12,9 +12,12 @@
 
 <script>
 export default {
+
   name: 'Myselect',
-  props: {
-    details: Object
+  data () {
+    return {
+      genere:""
+    }
   }
 }
 </script>

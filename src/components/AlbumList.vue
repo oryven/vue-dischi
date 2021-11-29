@@ -5,7 +5,7 @@
       </header>
       
       <section >
-          <Myselect/>
+          <Myselect @cambioGenere="cerca"/>
           <div class="container">
               <Album v-for="disco,i in discList" :key="i" :details="disco"/>
           </div>
@@ -41,8 +41,23 @@ export default {
         .then ((result) => {
             this.discList = result.data.response;
         })
-    }   
+    },
+   
+    cerca(termine){
+      console.log(termine);
+      if ( termine === "all"){
+        return this.discList
+      }
+      return this.discList.filter((item) => {
+        return item.genre.includes(termine)
+      })
+      
+    }
   }
+
+  // computed: {
+    
+  // }
 }
 </script>
 
