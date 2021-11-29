@@ -3,9 +3,9 @@
       <header>
             <img alt="Vue logo" src="../assets/logot.png">
       </header>
-
+      
       <section >
-
+          <Myselect/>
           <div class="container">
               <Album v-for="disco,i in discList" :key="i" :details="disco"/>
           </div>
@@ -17,11 +17,13 @@
 <script>
 import axios from "axios";
 import Album from '@/components/Album.vue';
+import Myselect from '@/components/Myselect.vue';
 
 export default {
   name: 'AlbumList',
   components: {
-    Album
+    Album,
+    Myselect
   },
   data () {
     return {
@@ -60,6 +62,7 @@ section {
     height: calc(100vh - 50px);
     padding-top: 50px ;
     overflow-y: scroll;
+    text-align: center;
     .container {
         display: flex;
         flex-wrap: wrap;
