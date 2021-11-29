@@ -5,7 +5,7 @@
       </header>
       
       <section >
-          <Myselect @cambioGenere="cerca"/>
+          <Myselect @cambioGenere="gestisciGenere" />
           <div class="container">
               <Album v-for="disco,i in filtraGeneri" :key="i" :details="disco"/>
           </div>
@@ -28,25 +28,28 @@ export default {
   data () {
     return {
         apiUrl:"https://flynn.boolean.careers/exercises/api/array/music",
-        discList: []
+        discList: [],
+        genereSelezionato: "",
     }
   },
   created () {
     this.getAlbumList();
   },
-
   computed: {
-    filtraGeneri(genere){
-      if ( genere === "all"){
-        return this.discList
+    filtraGeneri(){
+      if (this.genereSelezionato === '' || this.genereSelezionato === "All"){
+        return this.discList;
       }
       return this.discList.filter((item) => {
-        return item.genre.includes(genere)
-      })
+        return item.genre.includes(this.genereSelezionato);
+      });
     }
   },
 
   methods: {
+    gestisciGenere(genere) {
+      this.genereSelezionato = genere;
+    },
     getAlbumList() {
         axios
         .get (this.apiUrl)
