@@ -7,7 +7,7 @@
       <section >
           <Myselect @cambioGenere="cerca"/>
           <div class="container">
-              <Album v-for="disco,i in discList" :key="i" :details="disco"/>
+              <Album v-for="disco,i in filtraGeneri" :key="i" :details="disco"/>
           </div>
 
       </section>
@@ -34,6 +34,18 @@ export default {
   created () {
     this.getAlbumList();
   },
+
+  computed: {
+    filtraGeneri(genere){
+      if ( genere === "all"){
+        return this.discList
+      }
+      return this.discList.filter((item) => {
+        return item.genre.includes(genere)
+      })
+    }
+  },
+
   methods: {
     getAlbumList() {
         axios
@@ -43,21 +55,16 @@ export default {
         })
     },
    
-    cerca(termine){
-      console.log(termine);
-      if ( termine === "all"){
-        return this.discList
-      }
-      return this.discList.filter((item) => {
-        return item.genre.includes(termine)
-      })
-      
-    }
-  }
-
-  // computed: {
-    
-  // }
+    // cerca(termine){
+    //   console.log(termine);
+    //   if ( this.termine === "all"){
+    //     return this.discList
+    //   }
+    //   return this.discList.filter((item) => {
+    //     return item.genre.includes(this.termine)
+    //   })
+    // } 
+  } 
 }
 </script>
 
