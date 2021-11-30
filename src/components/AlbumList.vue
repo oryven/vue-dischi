@@ -1,15 +1,9 @@
 <template>
   <div>
-      <header>
-            <img alt="Vue logo" src="../assets/logot.png">
-      </header>
-      
       <section >
-          <Myselect @cambioGenere="gestisciGenere" />
           <div class="container">
               <Album v-for="disco,i in filtraGeneri" :key="i" :details="disco"/>
           </div>
-
       </section>
   </div>
 </template>
@@ -17,21 +11,26 @@
 <script>
 import axios from "axios";
 import Album from '@/components/Album.vue';
-import Myselect from '@/components/Myselect.vue';
+
 
 export default {
   name: 'AlbumList',
   components: {
-    Album,
-    Myselect
+    Album
+
   },
+
   data () {
     return {
         apiUrl:"https://flynn.boolean.careers/exercises/api/array/music",
         discList: [],
-        genereSelezionato: "",
     }
   },
+
+  props: {
+      selectedOption: String
+  },
+
   created () {
     this.getAlbumList();
   },
@@ -40,16 +39,14 @@ export default {
       if (this.genereSelezionato === '' || this.genereSelezionato === "All"){
         return this.discList;
       }
-      return this.discList.filter((item) => {
+        return this.discList.filter((item) => {
         return item.genre.includes(this.genereSelezionato);
       });
     }
   },
 
   methods: {
-    gestisciGenere(genere) {
-      this.genereSelezionato = genere;
-    },
+  
     getAlbumList() {
         axios
         .get (this.apiUrl)
@@ -73,20 +70,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-header {
-    height: 50px;
-    background-color: #2e3a46;
-    display: flex;
-    align-items: center;
-    img {
-        width: 60px;
-    }
-}
+
 section {
     background-color: #1e2d3b;
-    height: calc(100vh - 50px);
-    padding-top: 50px ;
-    overflow-y: scroll;
+    
+    // height: calc(100vh - 50px);
+    // overflow-y: scroll;
     text-align: center;
     .container {
         display: flex;

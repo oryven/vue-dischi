@@ -1,25 +1,38 @@
 <template>
   <div id="app">
-    
-    <AlbumList/>
+    <Myheader @cambioGenere="gestisciGenere" />
+    <AlbumList />
   </div>
   
 </template>
 
 <script>
 import AlbumList from './components/AlbumList.vue'
+import Myheader from '@/components/Myheader.vue';
 
 export default {
   name: 'App',
   components: {
-    AlbumList
+    AlbumList,
+    Myheader,
+  },
+
+  data(){
+    return {
+      genreList: [],
+      genereSelezionato: ""
+    }
+  },
+
+  methods: {
+      gestisciGenere(genere) {
+      this.genereSelezionato = genere;
+    }
   }
+    
 }
 
 </script>
-
-
-
 
 <style lang="scss">
 #app {
