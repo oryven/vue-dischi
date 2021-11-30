@@ -28,7 +28,7 @@ export default {
   },
 
   props: {
-      selectedOption: String
+    genereSelezionato: String
   },
 
   created () {
@@ -82,6 +82,8 @@ section {
         flex-wrap: wrap;
         width: 70%;
         margin: auto;
+        padding-top: 50px;
+        height: 100vh;
     }
 }
 

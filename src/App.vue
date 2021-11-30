@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Myheader @cambioGenere="gestisciGenere" />
-    <AlbumList />
+    <AlbumList :genereSelezionato="genereSelezionato" />
   </div>
   
 </template>
@@ -19,7 +19,7 @@ export default {
 
   data(){
     return {
-      genreList: [],
+      discList: [],
       genereSelezionato: ""
     }
   },
